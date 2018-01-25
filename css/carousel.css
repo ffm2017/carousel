@@ -1,0 +1,59 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+body{padding-bottom:100px;}
+.lb{width:100%;margin-bottom:15px;padding:10px;background-color:#eee;}
+/*.do{display:block;margin:auto;margin-bottom:30px;}*/
+.carousel_container {position:relative;margin:10px auto;width:100%;max-width:400px;height:250px;border:1px solid #999;overflow:hidden;}
+.carousel_container.view{overflow:visible;}
+.carousel_wrap{position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;font-size:0;white-space:nowrap;padding:0;}
+.carousel_wrap .slide_item{display:inline-block;width:100%;height:100%;font-size:120px;text-align:center;font-weight:600;background-color:#ddd;color:#fff;overflow:hidden;}
+.carousel_wrap .slide_item img{width:auto;height:100%;}
+.carousel_pagination{position:absolute;bottom:0;left:0;right:0;z-index:19;text-align:center;background:linear-gradient(90deg,rgba(0,0,0,.3));}
+.carousel_pagination li{display:inline-block;margin:2px;width:12px;height:12px;border-radius:50%;border:1px solid currentColor;color:rgba(0,0,0,.5);background-color:currentColor;box-shadow:0 1px 2px #666;cursor:pointer;}
+.carousel_pagination li.active{color:#fff;}
+.carousel_container .btn{position:absolute;top:50%;transform:translateY(-50%);padding:1.6em .8em;text-align:center;cursor:pointer;color:#000;}
+.carousel_container .btn:hover{background-color:hsla(0,0%,100%,.1);}
+.carousel_container .btn.prev{left:0;}
+.carousel_container .btn.next{right:0;}
+/*横向滚动*/
+.carousel_container.col{}
+.carousel_container.col .carousel_pagination{top:0;bottom:0;left:auto;right:0;height:100%;display:flex;justify-content:center;flex-direction:column;}
+.carousel_container.col .btn{left:50%;padding:.3em;right:auto;transform:translateY(0) translateX(-50%);font-size:12px;}
+.carousel_container.col .btn:hover{color:#999;}
+.carousel_container.col .btn.prev{top:0;}
+.carousel_container.col .btn.next{top:auto;bottom:0;}
+.carousel_container.col .carousel_pagination li{display:block;}
+.carousel_container.col .carousel_wrap .slide_item{display:block;}
+/*纵向滚动*/
+.carousel_container.ab .slide_item{position:absolute;left:0;top:0;right:0;bottom:0;border:1px solid red;}
+/*未铺满*/
+/*#carousel{width:100%;max-width:1200px;}*/
+/*#carousel .slide_item{width:320px;height:320px;}*/
+/*#carousel2{width:auto;max-width:1200px;}*/
+/*#carousel2{overflow:visible;}*/
+/*#carousel2 .slide_item{width:320px;height:320px;}*/
+/*#carousel3 .slide_item{height:100%;}*/
+/*#carousel5{border:1px solid red;overflow:visible;}*/
+/*#carousel6{border:1px solid red;overflow:visible;}*/
+
+
+/**{margin:0;padding:0;box-sizing:border-box;}*/
+/*body{padding-bottom:100px;}*/
+/*.lb{width:100%;margin-bottom:15px;padding:10px;background-color:#eee;}*/
+/*!*.do{display:block;margin:auto;margin-bottom:30px;}*!*/
+/*.carousel_area{position:relative;margin:10px auto;width:100%;max-width:400px;height:250px;border:1px solid #999;}*/
+/*.carousel_area.hide{position:relative;margin:10px auto;width:100%;max-width:400px;height:250px;border:1px solid #999;overflow:hidden;border:1px solid red;}*/
+/*!*.carousel_area{position:relative;margin:10px auto;width:100%;max-width:400px;height:250px;border:1px solid #999;overflow:hidden;}*!*/
+/*.carousel_area  .content{position:absolute;left:0;top:0;right:0;bottom:0;width:100%;height:100%;font-size:0;white-space:nowrap;padding:0;}*/
+/*.carousel_area  .content .item{display:inline-block;width:50%;height:100%;font-size:120px;text-align:center;font-weight:600;background-color:#999;color:#fff;overflow:hidden;}*/
+/*.carousel_area  .content .item img{width:50%;height:100%;}*/
+/*.carousel_area .orders{position:absolute;bottom:0;left:0;right:0;z-index:19;text-align:center;background:linear-gradient(90deg,rgba(0,0,0,.3));}*/
+/*.carousel_area .orders li{display:inline-block;margin:0 2px;width:12px;height:12px;border-radius:50%;border:1px solid currentColor;color:rgba(0,0,0,.5);background-color:currentColor;box-shadow:0 1px 2px #666;cursor:pointer;}*/
+/*.carousel_area .orders li.active{color:#fff;}*/
+/*.carousel_area .btn{position:absolute;top:50%;transform:translateY(-50%);padding:1.6em .8em;text-align:center;cursor:pointer;color:#eee;}*/
+/*.carousel_area .btn:hover{background-color:hsla(0,0%,100%,.1);}*/
+/*.carousel_area .btn.prev{left:0;}*/
+/*.carousel_area .btn.next{right:0;}*/
+/*!*横向滚动*!*/
+/*.carousel_area.up .content .item{display:block;}*/
+/*.carousel_area.down .content .item{display:block;}*/
+/*!*纵向滚动*!*/

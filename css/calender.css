@@ -1,0 +1,10 @@
+.calender_area{max-width:300px;margin:20px auto;padding:15px;text-align:center;border:1px solid #ddd;background-color:#fafafa;}
+.calender_area .sum{position:relative;padding:8px 0;border-bottom:1px solid #000;}
+.calender_area .sum .date{display:inline-block;}
+.calender_area .sum .prev{position:absolute;left:0;}
+.calender_area .sum .next{position:absolute;right:0;}
+.calender_area .choice_area{width:100%;margin-top:15px;}
+.calender_area .choice_area td{cursor:pointer;}
+.calender_area .gray{color:#999;}
+.calender_area .today{color:red;}
+   

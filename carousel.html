@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link href="css/carousel.css" rel="stylesheet">
+    <title>轮播图</title>
+    <style>
+    </style>
+</head>
+<body>
+<section class="lb">
+    <button class="do">执行1</button>
+    <div class="carousel_container" id="carousel">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">
+                <img src="img/1.jpg">
+            </li>
+            <li class="slide_item 2">
+                <img src="img/2.jpg">
+            </li>
+            <li class="slide_item 3">
+                <img src="img/3.jpg">
+            </li>
+            <li class="slide_item 4">
+                <img src="img/4.jpg">
+            </li>
+            <li class="slide_item 5">
+                <img src="img/5.jpg">
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">》</div>
+        <div class="prev btn">《</div>
+    </div>
+</section>
+<section class="lb">
+    <button class="do">执行2</button>
+    <div class="carousel_container" id="carousel2">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">
+                <img src="img/1.jpg">
+            </li>
+            <li class="slide_item 2">
+                <img src="img/2.jpg">
+            </li>
+            <li class="slide_item 3">
+                <img src="img/3.jpg">
+            </li>
+            <li class="slide_item 4">
+                <img src="img/4.jpg">
+            </li>
+            <li class="slide_item 5">
+                <img src="img/5.jpg">
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">》</div>
+        <div class="prev btn">《</div>
+    </div>
+</section>
+<section class="lb">
+    <button class="do">执行3</button>
+    <div class="carousel_container col" id="carousel3">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">1
+                <img src="img/1.jpg">
+            </li>
+            <li class="slide_item 2">2
+                <img src="img/2.jpg">
+            </li>
+            <li class="slide_item 3">3
+                <img src="img/3.jpg">
+            </li>
+            <li class="slide_item 4">4
+                <img src="img/4.jpg">
+            </li>
+            <li class="slide_item 5">5
+                <img src="img/5.jpg">
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">上一页</div>
+        <div class="prev btn">下一页</div>
+    </div>
+</section>
+<section class="lb">
+    <button class="do">执行4</button>
+    <div class="carousel_container col" id="carousel4">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">
+                <img src="img/1.jpg">
+            </li>
+            <li class="slide_item 2">
+                <img src="img/2.jpg">
+            </li>
+            <li class="slide_item 3">
+                <img src="img/3.jpg">
+            </li>
+            <li class="slide_item 4">
+                <img src="img/4.jpg">
+            </li>
+            <li class="slide_item 5">
+                <img src="img/5.jpg">
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">下一页</div>
+        <div class="prev btn">上一页</div>
+    </div>
+</section>
+<section class="lb">
+    <button class="do">执行5</button>
+    <div class="carousel_container col" id="carousel5">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">1
+                <img src="img/1.jpg">
+            </li>
+            <li class="slide_item 2">2
+                <img src="img/2.jpg">
+            </li>
+            <li class="slide_item 3">3
+                <img src="img/3.jpg">
+            </li>
+            <li class="slide_item 4">4
+                <img src="img/4.jpg">
+            </li>
+            <li class="slide_item 5">5
+                <img src="img/5.jpg">
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">下一页</div>
+        <div class="prev btn">上一页</div>
+    </div>
+</section>
+<section class="lb">
+    <button class="do">执行6</button>
+    <div class="carousel_container ab" id="carousel6">
+        <ul class="carousel_wrap">
+            <li class="slide_item 1">1
+
+            </li>
+            <li class="slide_item 2">2
+
+            </li>
+            <li class="slide_item 3">3
+
+            </li>
+            <li class="slide_item 4">4
+
+            </li>
+            <li class="slide_item 5">5
+
+            </li>
+        </ul>
+        <ul class="carousel_pagination"></ul>
+        <div class="next btn">下一页</div>
+        <div class="prev btn">上一页</div>
+    </div>
+</section>
+
+</body>
+<script src="../public/js/jquery-3.1.1.min.js"></script>
+<script>
+$().ready(function(){
+//   carousel("#carousel"); /*向左滚，跳到第一帧*/
+//   carousel2("#carousel2"); /*向左滚，无缝衔接*/
+//   carousel3("#carousel3");  /*向上滚，无缝衔接*/
+//   carousel4("#carousel4");  /*向上滚,跳到第一帧*/
+//   carousel5("#carousel5");  /*向下滚*/
+   carousel6("#carousel6");  /*渐变*/
+});
+   function carousel(obj){
+      var prev=$(obj).find(".prev"),
+          next=$(obj).find(".next"),
+          content=$(obj).find(".carousel_wrap"),
+          orders=$(obj).find(".carousel_pagination"),
+          item=content.find(".slide_item"),
+          width=item.width(),
+          timer,
+          speed=1200,
+          order="",index=0;
+      $(".do").on("click",function(){
+          running();
+      });
+      $.each($(obj).find(".slide_item"),function(){
+          order+="<li></li>";
+      });
+       orders.append(order);
+       orders.find("li:first-child").addClass("active");
+       orders.find("li").click(function(){
+           index=$(this).index();
+           slider();
+       });
+       next.click(function(){
+           running();
+       });
+       prev.click(function(){
+           if(index==0){
+               index=(item.length-1);
+           }else{
+               index--;
+           }
+           slider();
+       });
+      function slider(){
+          content.animate({"left":-index*width});
+          orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+      }
+      function running(){
+          if(index>=(item.length-1)){
+              index=0;
+          }else{
+              index++;
+          }
+          slider();
+      }
+      clearInterval(timer);
+      timer=setInterval(running,speed);
+      $(obj).mouseover(function(){
+          clearInterval(timer);
+      });
+       $(obj).mouseout(function(){
+          timer=setInterval(running,speed);
+      });
+
+   }
+   function carousel2(obj){
+       var prev=$(obj).find(".prev"),
+           next=$(obj).find(".next"),
+           content=$(obj).find(".carousel_wrap"),
+           orders=$(obj).find(".carousel_pagination"),
+           item=content.find(".slide_item"),
+        width=item.width(),
+        timer,
+        speed=1200,
+        order="",index=0;
+    $(".do").on("click",function(){
+        running();
+    });
+    $.each($(obj).find(".slide_item"),function(key,val){
+        order+="<li></li>";
+        content.append($(val).clone());
+    });
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==0){
+            content.css({"left":-(item.length)*width});
+            index=item.length-1;
+        }else{
+            index--;
+        }
+        slider();
+    });
+    function slider(){
+//        console.log(index);
+        content.stop().animate({"left":-index*width});
+        if(index==item.length){
+            orders.find("li").eq(0).addClass("active").siblings().removeClass("active");
+        }else{
+            orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+        }
+    }
+    function running(){
+        if(index>=item.length){
+            index=1;
+            content.css({"left":0});
+        }else{
+            index++;
+        }
+        slider();
+    }
+    clearInterval(timer);
+    timer=setInterval(running,speed);
+    $(obj).mouseover(function(){
+        clearInterval(timer);
+    });
+    $(obj).mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+}
+   function carousel3(obj){
+       var prev=$(obj).find(".prev"),
+           next=$(obj).find(".next"),
+           content=$(obj).find(".carousel_wrap"),
+           orders=$(obj).find(".carousel_pagination"),
+           item=content.find(".slide_item"),
+        distance=$(obj).height(),
+        timer,
+        speed=1200,
+        order="",index=0;
+    $(".do").on("click",function(){
+        running();
+    });
+
+    $.each($(obj).find(".slide_item"),function(){
+        order+="<li></li>";
+        content.append(item.eq(0).clone());
+    });
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==0){
+            content.css({"top":-(item.length)*distance});
+            index=item.length-1;
+        }else{
+            index--;
+        }
+        slider();
+    });
+    function slider(){
+        content.stop().animate({"top":-index*distance});
+        if(index==item.length){
+            orders.find("li").eq(0).addClass("active").siblings().removeClass("active");
+        }else{
+            orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+        }
+    }
+    function running(){
+        if(index>=item.length){
+            index=1;
+            content.css({"top":0});
+        }else{
+            index++;
+        }
+        slider();
+    }
+    clearInterval(timer);
+    timer=setInterval(running,speed);
+    $(obj).mouseover(function(){
+        clearInterval(timer);
+    });
+    $(obj).mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+}
+   function carousel4(obj){
+       var prev=$(obj).find(".prev"),
+           next=$(obj).find(".next"),
+           content=$(obj).find(".carousel_wrap"),
+           orders=$(obj).find(".carousel_pagination"),
+           item=content.find(".slide_item"),
+        distance=$(obj).height(),
+        timer,
+        speed=1200,
+        order="",index=0;
+    $(".do").on("click",function(){
+        running();
+    });
+    $.each($(obj).find(".slide_item"),function(key,val){
+        order+="<li></li>";
+//        content.append($(val).clone());
+    });
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==0){
+            index=item.length-1;
+            content.stop().animate({"top":-(index)*distance});
+        }else{
+            index--;
+        }
+        slider();
+    });
+    function slider(){
+        content.stop().animate({"top":-index*distance});
+        if(index==item.length){
+            orders.find("li").eq(0).addClass("active").siblings().removeClass("active");
+        }else{
+            orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+        }
+    }
+    function running(){
+        if(index==item.length-1){
+            index=0;
+            content.stop().animate({"top":-(index)*distance});
+        }else{
+            index++;
+        }
+        slider();
+    }
+    clearInterval(timer);
+    timer=setInterval(running,speed);
+    $(obj).mouseover(function(){
+        clearInterval(timer);
+    });
+    $(obj).mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+}
+   function carousel5(obj){
+       var prev=$(obj).find(".prev"),
+           next=$(obj).find(".next"),
+           content=$(obj).find(".carousel_wrap"),
+           orders=$(obj).find(".carousel_pagination"),
+           item=content.find(".slide_item"),
+        distance=$(obj).height(),
+        timer,
+        speed=1500,
+        order="",init_i=index=item.length-1;
+        $(".do").on("click",function(){
+            running();
+        });
+       $.each(item,function(key,val){
+           order+="<li></li>";
+           item.eq(key+1).insertBefore(item.eq(key));
+//           content.prepend(item.eq(key).clone());
+       });
+    content.css({"top":-(index)*distance});
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=init_i-$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==init_i){
+            index=0;
+            content.css({"top":-(index)*distance});
+        }else{
+            index++;
+        }
+        slider();
+    });
+    function slider(){
+        content.stop().animate({"top":-(index)*distance});
+        orders.find("li").eq(init_i-index).addClass("active").siblings().removeClass("active");
+    }
+    function running(){
+        if(index==0){
+            index=init_i;
+        }else{
+            index--;
+        }
+        slider();
+    }
+    clearInterval(timer);
+    timer=setInterval(running,speed);
+    $(obj).mouseover(function(){
+        clearInterval(timer);
+    });
+    $(obj).mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+}
+    function carousel6(obj){
+        var prev=$(obj).find(".prev"),
+            next=$(obj).find(".next"),
+            content=$(obj).find(".carousel_wrap"),
+            orders=$(obj).find(".carousel_pagination"),
+            item=content.find(".slide_item"),
+            width=item.width(),
+            timer,
+            speed=1200,
+            order="",index=0;
+        $(".do").on("click",function(){
+            running();
+        });
+        $.each($(obj).find(".slide_item"),function(){
+            order+="<li></li>";
+        });
+        orders.append(order);
+        orders.find("li:first-child").addClass("active");
+        orders.find("li").click(function(){
+            index=$(this).index();
+            slider();
+        });
+        next.click(function(){
+            running();
+        });
+        prev.click(function(){
+            if(index==0){
+                index=(item.length-1);
+            }else{
+                index--;
+            }
+            slider();
+        });
+        function slider(){
+            item.eq(index).fadeIn().siblings().fadeOut();
+//            content.animate({"left":-index*width});
+            orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+        }
+        function running(){
+            if(index>=(item.length-1)){
+                index=0;
+            }else{
+                index++;
+            }
+            slider();
+        }
+        clearInterval(timer);
+        timer=setInterval(running,speed);
+        $(obj).mouseover(function(){
+            clearInterval(timer);
+        });
+        $(obj).mouseout(function(){
+            timer=setInterval(running,speed);
+        });
+
+    }
+/*以下是img为100%*/
+function carousel_fb(){
+    var obj=$("#carousel"),
+        prev=obj.find(".prev"),
+        next=obj.find(".next"),
+        content=obj.find(".content"),
+        orders=obj.find(".orders"),
+        item=content.find(".item"),
+        width=obj.width(),
+        timer,
+        speed=1200,
+        order="",index=0;
+    $(".do").on("click",function(){
+        running();
+    });
+    $.each(content.find(".item"),function(){
+        order+="<li></li>";
+    });
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==0){
+            index=(item.length-1);
+        }else{
+            index--;
+        }
+        slider();
+    });
+    function slider(){
+        content.animate({"left":-index*width});
+        orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+    }
+    function running(){
+        if(index>=(item.length-1)){
+            index=0;
+        }else{
+            index++;
+        }
+        slider();
+    }
+    clearInterval(timer);
+    timer=setInterval(running,speed);
+    obj.mouseover(function(){
+        clearInterval(timer);
+    });
+    obj.mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+
+
+}
+function carousel2_fb(obj){
+    var prev=$(obj).find(".prev"),
+        next=$(obj).find(".next"),
+        content=$(obj).find(".carousel_wrap"),
+        orders=$(obj).find(".carousel_pagination"),
+        item=content.find(".slide_item"),
+        width=item.width(),
+        timer,
+        speed=1200,
+        order="",index=0;
+    $(".do").on("click",function(){
+        running();
+    });
+    content.append(item.eq(0).clone());
+
+    $.each(content.find(".item"),function(){
+        order+="<li></li>";
+    });
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==0){
+            content.css({"left":-(item.length)*width});
+            index=item.length-1;
+        }else{
+            index--;
+        }
+        slider();
+    });
+    function slider(){
+        content.stop().animate({"left":-index*width});
+        if(index==item.length){
+            orders.find("li").eq(0).addClass("active").siblings().removeClass("active");
+        }else{
+            orders.find("li").eq(index).addClass("active").siblings().removeClass("active");
+        }
+    }
+    function running(){
+        if(index>=item.length){
+            index=1;
+            content.css({"left":0});
+        }else{
+            index++;
+        }
+        slider();
+    }
+    clearInterval(timer);
+//    timer=setInterval(running,speed);
+    $(obj).mouseover(function(){
+        clearInterval(timer);
+    });
+    $(obj).mouseout(function(){
+        timer=setInterval(running,speed);
+    });
+}
+function carousel5_fb(obj){
+    var prev=$(obj).find(".prev"),
+        next=$(obj).find(".next"),
+        content=$(obj).find(".carousel_wrap"),
+        orders=$(obj).find(".carousel_pagination"),
+        item=content.find(".slide_item"),
+        distance=$(obj).height(),
+        timer,
+        speed=1500,
+        order="",init_i=index=item.length-1;
+    $(".do").on("click",function(){
+        running();
+    });
+    for(var i=0;i<item.length;i++){
+        order+="<li></li>";
+//        content.prepend(item.eq(i).clone());
+        item.eq(i+1).insertBefore(item.eq(i));
+    }
+    content.css({"top":-(index)*distance});
+    orders.append(order);
+    orders.find("li:first-child").addClass("active");
+    orders.find("li").click(function(){
+        index=init_i-$(this).index();
+        slider();
+    });
+    next.click(function(){
+        running();
+    });
+    prev.click(function(){
+        if(index==init_i){
+            index=0;
+            content.css({"top":-(index)*distance});
+        }else{
+            index++;
+        }
+        slider();
+    });
+    function slider(){
+        content.stop().animate({"top":-(index)*distance});
+        orders.find("li").eq(init_i-index).addClass("active").siblings().removeClass("active");
+    }
+    function running(){
+        if(index==0){
+            index=init_i;
+        }else{
+            index--;
+        }
+        slider();
+    }
+    clearInterval(timer);
+//    timer=setInterval(running,speed);
+//    $(obj).mouseover(function(){
+//        clearInterval(timer);
+//    });
+//    $(obj).mouseout(function(){
+//        timer=setInterval(running,speed);
+//    });
+}
+</script>
+
+</html>
